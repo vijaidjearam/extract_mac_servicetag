@@ -13,4 +13,4 @@ ex:
 
 Execute the following python file  *extract-macadress-servicetag.py* located in the desktop.
 
-It will create a data.csv file in the desktop with filename,mac-addressand servicetag.
+It will create a data.csv file in the desktop with filename,mac-address and servicetag.
