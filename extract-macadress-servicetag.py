@@ -12,8 +12,8 @@ data = []
 
 # regular expression pattern for MAC address and service tag
 #mac_pattern = re.compile(r'([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})')
-mac_pattern = re.compile(r'Adresse\sMAC\s:\s([0-9A-Z]{12})')
-tag_pattern = re.compile(r'Service\sTag\s:\s([0-9A-Z]{7})')
+mac_pattern = re.compile(r'Adresse\sMAC\s?:(\s+)?(\W+)?(?P<mac>[0-9A-Z]{12})')
+tag_pattern = re.compile(r'Service\sTag\s?:(\s+)?(\W+)?(?P<st>[0-9A-Z]{7})')
 
 # set OCR language to French
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
@@ -30,9 +30,9 @@ for filename in os.listdir(img_dir):
         mac = mac_pattern.search(text)
         tag = tag_pattern.search(text)
         if mac:
-            mac = mac.group(1)
+            mac = mac.group('mac')
         if tag:
-            tag = tag.group(1)
+            tag = tag.group('st')
         # add data to list
         data.append([filename, mac, tag])
 
